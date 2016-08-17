@@ -1,24 +1,3 @@
-/*
-function foo(callback) {
-    httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function () {
-        if (httpRequest.readyState === 4) { // request is done
-            if (httpRequest.status === 200) { // successfully
-                callback(httpRequest.responseText); // we're calling our method
-            }
-        }
-    };
-    httpRequest.open('GET', "truenumdata.json");
-    httpRequest.send();
-}
-var a;
-foo(function (result) {
-    a = result;
-    document.body.innerHTML = result;
-});
-
-console.log(a)
-*/
 var createCORSRequest = function(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
