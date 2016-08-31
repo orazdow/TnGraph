@@ -196,7 +196,6 @@ lE = lines.enter()
       .append('g')
       .attr('class', 'property');
 
-
       lE.append("path")
         .attr("class", "tarea")
         .style('fill', 'red')
@@ -213,25 +212,36 @@ lE = lines.enter()
           return area(dataset.filter(function(d){ return d.property == 'humidity'}));
         });
 
+    svg.append("rect")
+        .attr("x", 6)
+        .attr("y", 0)
+        .style('fill', 'red')
+        .style('opacity', '0.8')
+        .attr("width", 10)
+        .attr("height", 10);
+
+    svg.append('text')
+        .text('Temperature F')
+        .attr('x', 19)
+        .attr('y', 9);
+
+    svg.append("rect")
+        .attr("x", 100)
+        .attr("y", 0)
+        .style('fill', 'steelblue')
+        .style('opacity', '0.8')
+        .attr("width", 10)
+        .attr("height", 10);
+
+    svg.append('text')
+        .text('humidity %')
+        .attr('x', 113)
+        .attr('y', 9);
 
  tfocus = svg.append("g").style("display", "none"); 
  hfocus = svg.append("g").style("display", "none");
 
-    tfocus.append("circle")
-        .attr("class", "y")
-        .style("fill", "red")
-        .style("stroke", "black")
-       // .style('opacity', '0.5')
-        .attr("r", 5);
-     
-     hfocus.append("circle")
-        .attr("class", "y")
-        .style("fill", "#2679FF")
-        .style("stroke", "black")
-       // .style('opacity', '0.5')
-        .attr("r", 5);   
-
-     // append the x line
+      // append the x line
     tfocus.append("line")
         .attr("class", "x")
         .style("stroke", "black")
@@ -247,6 +257,20 @@ lE = lines.enter()
         .style("opacity", 0.2)
         .attr("y1", 0)
         .attr("y2", height);
+
+    tfocus.append("circle")
+        .attr("class", "y")
+        .style("fill", "red")
+        .style("stroke", "black")
+       // .style('opacity', '0.5')
+        .attr("r", 5);
+     
+     hfocus.append("circle")
+        .attr("class", "y")
+        .style("fill", "#2679FF")
+        .style("stroke", "black")
+       // .style('opacity', '0.5')
+        .attr("r", 5);   
 
 }
 
