@@ -1,43 +1,63 @@
 <html>
-<head>
-<title>
-</title>
 <style>
-div.tooltip {   
-  position: absolute;           
-/*  text-align: center;*/           
-  width: 110px;                  
-  height: 40px;                 
-  padding: 2px;             
-  font: 12px sans-serif;        
-  background: lightsteelblue;   
-  border: 0px;      
-  border-radius: 8px;  
-  pointer-events: none;         
-}
-
-rect:hover {
-	fill: orange;
-}
-
-.axis text {
-  font: 12px sans-serif;
-}
-
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}	
+fill: none;
+stroke: #000;
+shape-rendering: crispEdges;
+}
+.tarea, .harea{
+pointer-events: none;	
+}
+body {
+  font: 11px sans-serif;
+} 
+#readouts{
+display: inline-block;
+}
+#treadout{
+width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;
+background-color: #FFEBA6;
+border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+}   
+#hreadout{
+width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;
+background-color: #FFE2A6;
+border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+}
+#disp{
+	width:800px;
+	float: left;
+}
+#buttons{
+	clear: both;
+}
 </style>
-</head>
 <body>
-<div id="disp"></div> 
+<div id="disp"></div>
+<div id="readouts">
+<div id="treadout"></div>
+<div id="hreadout"></div>
+</div>
+<div id="buttons">
+<button onclick="btnfunc()">add</button>
+<button onclick="shiftfunc()">shift</button>
+<button onclick="rmvfunc()">remove</button>
+<button onclick="animfunc()">anim on/off</button> 
+</div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="Zlib.js"></script>
+<script src="tdata.js"></script>
 <script src="d3graph.js"></script>
 <script src="main.js"></script>
-<script src="ajax.js"></script>
 </body>
 </html>
