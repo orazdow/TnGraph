@@ -7,7 +7,7 @@ var d3graph = (function () {
   var bb = 29;
   var maxdata = 6000;
   var firstappend = false;
-
+  var lastid = 'none';
   var margin = {top: 20, right: 20, bottom: 60, left: 40},
       width = w - margin.left - margin.right,
       height = h - margin.top - margin.bottom;
@@ -279,6 +279,8 @@ lE = lines.enter()
        // .style('opacity', '0.5')
         .attr("r", 5);   
 
+lastid = dataset[dataset.length-1].id;
+
 }
 
   function sortByDateAscending(a, b) {
@@ -304,7 +306,6 @@ var d2 = dataset[dataset.length-2];
 var dformat = d3.time.format('%m/%d');
 var dformat2 = d3.time.format('%I:%M:%S %p');
 
-
 d3.select('#treport').html(
    
    dformat(d.date) + '&nbsp&nbsp' + dformat2(d.date)  + '<br>'
@@ -318,7 +319,12 @@ d3.select('#hreport').html(
    + d2.property+':&nbsp' + d2.value.string + '<br>'
    +  '<a href="' + d2.link +'" ' +'target="_blank"' +'>' + 'truenumber' + '</a>'
   );
-
+//animate on new readings
+if(d.id != lastid && firstappend){ lastid = d.id;
+d3.select('#lastread').style('background-color', 'white')
+.transition().duration(990).style('background-color', 'red');
+d3.select('#lastread').transition().delay(400).duration(100).style('background-color', 'white');
+}
 }
 
 return {
