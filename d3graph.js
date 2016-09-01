@@ -12,7 +12,7 @@ var d3graph = (function () {
 
   var lastid = 'none';
   
-  var margin = {top: 20, right: 20, bottom: 60, left: 40},
+  var margin = {top: 20, right: 20, bottom: 40, left: 40},
       width = w - margin.left - margin.right,
       height = h - margin.top - margin.bottom;
 
