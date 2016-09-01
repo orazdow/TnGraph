@@ -5,9 +5,13 @@ var d3graph = (function () {
 
   var aa = 14;
   var bb = 29;
+
   var maxdata = 6000;
+
   var firstappend = false;
+
   var lastid = 'none';
+  
   var margin = {top: 20, right: 20, bottom: 60, left: 40},
       width = w - margin.left - margin.right,
       height = h - margin.top - margin.bottom;
@@ -55,8 +59,7 @@ var d3graph = (function () {
         .attr("transform", "translate(+"+0+"," + height + ")")
         .call(xAxis)
         .selectAll("text")
-        .style("text-anchor", "end")
-      ;//  .attr("transform", "rotate(-90)" );
+        .style("text-anchor", "end");
 
     svg.append('g')
       .attr('class', 'y axis').attr("transform", "translate(-"+0+"," +0 + ")")
@@ -65,14 +68,10 @@ var d3graph = (function () {
 var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
 
     var lines = svg.selectAll('.property');
-
     var lE;
 
-
-/////////////////////////tooltip code:
 var tfocus; 
 var hfocus;
-
     
 var  bisectDate = d3.bisector(function(d) { return d.date; }).left;
       
@@ -85,7 +84,6 @@ var  bisectDate = d3.bisector(function(d) { return d.date; }).left;
       .on("mouseover", function() { tfocus.style("display", null); hfocus.style("display", null); });
     //  .on("mouseout", function() { focus.style("display", "none"); });
         
-/////////////////////////////////
 function update(dataset){
 // parse new date strings
  dataset.forEach(function(d) { 
@@ -140,14 +138,12 @@ lE.select(".harea")
     });
   
 
-/////////////////////////tooltip code:
  var dformat = d3.time.format('%m/%d');
  var dformat2 = d3.time.format('%I:%M:%S %p');
 
 wind.on("mousemove", mousemove);
 
 function mousemove() {
-
 
   var tx0 = x.invert(d3.mouse(this)[0]),
       ti = bisectDate(tset, tx0, 1),
@@ -188,7 +184,6 @@ function mousemove() {
 
   }     
 
-//////////////////////////////////
 
 }
 
