@@ -294,8 +294,30 @@ var tspan = el.append('tspan').text(words[i]);
 if (i > 0)
       tspan.attr('x', bb).attr('dy', '15');
   }
- };
+ }
+ 
+function lastReading(dataset){
+var d = dataset[dataset.length-1];
+var d2 = dataset[dataset.length-2];
+var dformat = d3.time.format('%m/%d');
+var dformat2 = d3.time.format('%I:%M:%S %p');
 
+
+d3.select('#treport').html(
+   
+   dformat(d.date) + '&nbsp&nbsp' + dformat2(d.date)  + '<br>'
+   + d.property+':&nbsp' + d.value.string + '<br>'
+   +  '<a href="' + d.link +'" ' +'target="_blank"' +'>' + 'truenumber' + '</a>'
+  );
+
+d3.select('#hreport').html(
+   
+   dformat(d2.date) + '&nbsp&nbsp' + dformat2(d2.date)  + '<br>'
+   + d2.property+':&nbsp' + d2.value.string + '<br>'
+   +  '<a href="' + d2.link +'" ' +'target="_blank"' +'>' + 'truenumber' + '</a>'
+  );
+
+}
 
 return {
     update : update

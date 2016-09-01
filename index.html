@@ -11,6 +11,12 @@ pointer-events: none;
 }
 body {
   font: 11px sans-serif;
+}
+#svg{
+
+} 
+#bkgd{
+fill: #4FF0CF;
 } 
 #readouts{
 display: inline-block;
@@ -35,9 +41,49 @@ border: 1px solid black;
 border-radius: 5px;
 font: 15px sans-serif;
 }
+#treport{
+/*width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;*/
+/*background-color: #FFEBA6;
+border: 1px solid black;
+border-radius: 5px;*/
+margin:20px;
+font: 15px sans-serif;
+display: inline-block;
+}
+#hreport{
+/*width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;*/
+/*background-color: #FFEBA6;
+border: 1px solid black;
+border-radius: 5px;*/
+font: 15px sans-serif;
+display: inline-block;
+}
+#title{
+clear: both;	
+}
+#lastread{
+width:400px;
+height:70px;
+margin: 5px;
+padding: 10px;
+/*background-color: #FFEBA6;
+*/border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+display: inline-block;
+}
 #disp{
 	width:800px;
 	float: left;
+}
+#buttons{
+	clear: both;
 }
 </style>
 <body>
@@ -45,6 +91,11 @@ font: 15px sans-serif;
 <div id="readouts">
 <div id="treadout"></div>
 <div id="hreadout"></div>
+<div id="lastread">
+<div id="title">last sensor report</div>
+<div id="treport"></div>
+<div id="hreport"></div>	
+</div>
 </div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="Zlib.js"></script>
