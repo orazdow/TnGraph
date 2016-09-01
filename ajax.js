@@ -1,7 +1,7 @@
 var runloop = true;
 
 doit();
-window.setInterval(function(){if(runloop){ doit(); }}, 7000);
+window.setInterval(function(){if(runloop){ doit(); }}, 10000);
   
 function doit(){ 
 var createCORSRequest = function(method, url) {
