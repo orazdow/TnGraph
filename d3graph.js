@@ -98,6 +98,8 @@ if(dataset.length > maxdata){ console.log('sliced');
   dataset = dataset.slice(dataset.length-maxdata);
 }
 
+lastReading(dataset);
+
 x.domain(d3.extent(dataset, function (d) { return d.date; }));
 
 svg.selectAll("g.y.axis")
@@ -295,7 +297,7 @@ if (i > 0)
       tspan.attr('x', bb).attr('dy', '15');
   }
  }
- 
+
 function lastReading(dataset){
 var d = dataset[dataset.length-1];
 var d2 = dataset[dataset.length-2];
