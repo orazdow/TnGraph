@@ -2,9 +2,10 @@ var d3graph = (function () {
 
   var w = 800;
   var h = 280;
+
   var aa = 14;
   var bb = 29;
-
+  var maxdata = 6000;
   var firstappend = false;
 
   var margin = {top: 20, right: 20, bottom: 60, left: 40},
@@ -93,6 +94,10 @@ function update(dataset){
 // sort by date
 dataset = dataset.sort(sortByDateAscending);
 // update domain
+if(dataset.length > maxdata){ console.log('sliced');
+  dataset = dataset.slice(dataset.length-maxdata);
+}
+
 x.domain(d3.extent(dataset, function (d) { return d.date; }));
 
 svg.selectAll("g.y.axis")
