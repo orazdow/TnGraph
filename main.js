@@ -30,6 +30,15 @@ try {
 
 d3graph.update(tnums);	
 
+document.getElementById('literals').innerHTML = '';
+for (var i = 0; i < tliterals.length; i++) {
+ document.getElementById('literals').innerHTML += 
+ '<a href="' + tliterals[i].link +'" ' +'target="_blank"' +'>' + tliterals[i].wrapper + '</a>'
+ + '<br>';
+
+}
+
+
 
 }
 
