@@ -1,9 +1,10 @@
+var runloop = true;
 
 doit();
-
 window.setInterval(doit, 7000);
 
 function doit(){
+if(runloop){  
 var createCORSRequest = function(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -27,5 +28,5 @@ xhr.onload = function() {
 var data = JSON.parse(this.responseText);
 mainCallback(data);
 } 
-
+}
 }
