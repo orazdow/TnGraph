@@ -1,3 +1,9 @@
+
+doit();
+
+window.setInterval(doit, 7000);
+
+function doit(){
 var createCORSRequest = function(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -12,21 +18,14 @@ var createCORSRequest = function(method, url) {
     xhr = null;
   }
   return xhr;
-};
-
+}
+console.log('calling');
 var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&cmd=dashboard-search&qry=subj:*';
-var method = 'GET';
-var xhr = createCORSRequest(method, url);
-
-xhr.onload = function() {
-  //console.log(this.responseText);
-  var data = JSON.parse(this.responseText);
-  mainCallback(data);
-};
-
-xhr.onerror = function() {
-  // Error code goes here.
-};
-
+var xhr = createCORSRequest('GET', url);
 xhr.send();
+xhr.onload = function() {
+var data = JSON.parse(this.responseText);
+mainCallback(data);
+} 
 
+}
