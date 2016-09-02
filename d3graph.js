@@ -1,7 +1,7 @@
 var d3graph = (function () {
 
   var w = 800;
-  var h = 280;
+  var h = 250;
 
   var aa = 14;
   var bb = 29;
@@ -22,6 +22,16 @@ var d3graph = (function () {
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+/*
+  svg.append('svg:image')
+    .attr('xlink:href', 'http://cache.boston.com/resize/bonzai-fba/Globe_Photo/2010/01/21/1264122934_5926/539w.jpg')
+    .attr("width", width)
+    .attr("height", height)
+    .attr("preserveAspectRatio", "none")
+    .attr('opacity', '0.3')
+    .attr("x", 0)
+    .attr("y", 0);
+*/
    var x = d3.time.scale().range([0, width]);
 
     var y = d3.scale.linear()
