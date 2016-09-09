@@ -20,7 +20,7 @@ var createCORSRequest = function(method, url) {
   return xhr;
 }
 //console.log('calling');
-var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&cmd=dashboard-search&qry=subj:*';
+var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&order=order+by+date+desc+limit+5760+&cmd=dashboard-search&qry=subj:*';
 var xhr = createCORSRequest('GET', url);
 xhr.send();
 xhr.onload = function() {

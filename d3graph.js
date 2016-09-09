@@ -329,6 +329,8 @@ if(d.id != lastid && firstappend){ lastid = d.id;
 d3.select('#lastread').style('background-color', 'white')
 .transition().duration(990).style('background-color', 'red');
 d3.select('#lastread').transition().delay(400).duration(100).style('background-color', 'white');
+// d3.select('#lastread').style('background-color', 'red');
+// d3.select('#lastread').transition().duration(300).style('background-color', 'white');
 }
 }
 
