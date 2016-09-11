@@ -33,15 +33,6 @@ var d3graph = (function () {
     .attr("y", 0);
 */
 
-    // svg.append("rect")
-    //      .attr("x", width/2-25)
-    //      .attr("y", height/2-25)
-    //     .style('fill', 'black')
-    //     .style('opacity', '0.8')
-    //     .attr("width", 50)
-    //     .attr("height", 50)
-    //     .attr('id', 'load');
-
    var x = d3.time.scale().range([0, width]);
 
     var y = d3.scale.linear()
