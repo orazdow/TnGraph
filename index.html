@@ -1,39 +1,147 @@
 <html>
-<head>
-<title>
-</title>
 <style>
-div.tooltip {   
-  position: absolute;           
-/*  text-align: center;*/           
-  width: 110px;                  
-  height: 40px;                 
-  padding: 2px;             
-  font: 12px sans-serif;        
-  background: lightsteelblue;   
-  border: 0px;      
-  border-radius: 8px;  
-  pointer-events: none;         
-}
-
-rect:hover {
-	fill: orange;
-}
-
-.axis text {
-  font: 12px sans-serif;
-}
-
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}	
+fill: none;
+stroke: #000;
+shape-rendering: crispEdges;
+}
+.tarea, .harea{
+pointer-events: none;	
+}
+body {
+  font: 11px sans-serif;
+}
+#svg{
+
+} 
+#bkgd{
+fill: #4FF0CF;
+} 
+#readouts{
+display: inline-block;
+}
+#treadout{
+width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;
+background-color: #FFEBA6;
+border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+}   
+#hreadout{
+width:200px;
+height:70px;
+margin: 5px;
+padding: 10px;
+background-color: #FFE2A6;
+border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+}
+#treport{
+margin:20px;
+font: 15px sans-serif;
+display: inline-block;
+}
+#hreport{
+font: 15px sans-serif;
+display: inline-block;
+}
+#title{
+clear: both;	
+}
+#literals{
+width: 300px;
+height: 40px;	
+line-height: 20px;	
+border: 1px solid black;
+overflow-y: scroll;
+}
+#lastread{
+width:400px;
+height:70px;
+margin: 5px;
+padding: 10px;
+/*background-color: #FFEBA6;
+*/border: 1px solid black;
+border-radius: 5px;
+font: 15px sans-serif;
+display: inline-block;
+}
+#disp{
+	width:800px;
+	float: left;
+}
+
+#spinner {
+ position: absolute;	
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+  left: 390; /* << might need adjusting*/
+  top: 0;
+}
+
+#spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: red;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+#spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+#spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
 </style>
-</head>
 <body>
-<div id="disp"></div> 
+<svg id="disp">
+<div id="spinner">
+&nbsp&nbspLoading Data
+<div class="bounce1"></div>
+<div class="bounce2"></div>
+<div class="bounce3"></div>
+</div>	
+</svg>
+<div id="readouts">
+<div id="treadout"></div>
+<div id="hreadout"></div>
+<div id="lastread">
+<div id="title">last sensor report</div>
+<div id="treport"></div>
+<div id="hreport"></div>	
+</div>
+</div>
+<div>Sensor Truenumbers
+<div id="literals"></div>
+</div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="Zlib.js"></script>
 <script src="d3graph.js"></script>

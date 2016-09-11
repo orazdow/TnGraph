@@ -1,3 +1,5 @@
+var runloop = true;
+
 var createCORSRequest = function(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -12,21 +14,33 @@ var createCORSRequest = function(method, url) {
     xhr = null;
   }
   return xhr;
-};
+}
 
-var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&cmd=dashboard-search&qry=subj:*';
-var method = 'GET';
-var xhr = createCORSRequest(method, url);
+mainAjax();
+getLiterals();
+window.setInterval(function(){if(runloop){ mainAjax(); }}, 10000);
+  
+function mainAjax(){ 
 
-xhr.onload = function() {
-  //console.log(this.responseText);
-  var data = JSON.parse(this.responseText);
-  mainCallback(data);
-};
-
-xhr.onerror = function() {
-  // Error code goes here.
-};
-
+var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&order=order+by+date+desc+limit+5760+&cmd=dashboard-search&qry=subj:*';
+var xhr = createCORSRequest('GET', url);
 xhr.send();
+xhr.onload = function() {
+var data = JSON.parse(this.responseText);
+mainCallback(data);
+} 
+
+}
+
+function getLiterals(){ 
+
+var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&cmd=dashboard-search&qry=parameter*';
+var xhr = createCORSRequest('GET', url);
+xhr.send();
+xhr.onload = function() {
+var data = JSON.parse(this.responseText);
+literalsCallback(data);
+} 
+
+}
 
