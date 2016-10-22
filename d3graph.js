@@ -32,7 +32,7 @@ w = d3.select("#disp").style("width").replace("px", "");
 if(checkRules('#disp', 'height'))
 h = d3.select("#disp").style("height").replace("px", "");
 
-var margin = {top: 20, right: 40, bottom: 20, left: 40},
+var margin = {top: 20, right: 40, bottom: 40, left: 40},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 
