@@ -22,7 +22,7 @@ window.setInterval(function(){if(runloop){ mainAjax(); }}, 10000);
   
 function mainAjax(){ 
 
-var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&order=order+by+date+desc+limit+5760+&cmd=dashboard-search&qry=subj:*';
+var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=graphspace&sto=5&order=order+by+date+desc+limit+5760+&cmd=dashboard-search&qry=subj:*';
 var xhr = createCORSRequest('GET', url);
 xhr.send();
 xhr.onload = function() {
@@ -34,7 +34,7 @@ mainCallback(data);
 
 function getLiterals(){ 
 
-var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=FortPointWeather&sto=1&cmd=dashboard-search&qry=parameter*';
+var url = 'http://pub.truenumbers.com/Numberflow/API?auth=ollie@truenum.com:Randal9?&ns=graphspace&sto=5&cmd=dashboard-search&qry=parameter*';
 var xhr = createCORSRequest('GET', url);
 xhr.send();
 xhr.onload = function() {
