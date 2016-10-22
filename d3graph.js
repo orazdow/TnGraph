@@ -81,7 +81,7 @@ var timeformat = d3.time.format('%I:%M:%S %p')
   var xAxis = d3.svg.axis()
       .scale(x)  
       .orient("bottom")
-      .ticks(d3.time.hours, 6)
+      .ticks(0)
       .tickFormat(d3.time.format('%m/%d %I:%M%p')); 
 
   var yAxis = d3.svg.axis()
@@ -154,6 +154,12 @@ x.domain(d3.extent(dataset, function (d) { return d.date; }));
 
 ///////////////
 
+// do first append once
+if(!firstappend){
+  init(dataset); 
+  firstappend = true;
+}
+
 svg.selectAll("g.y.axis")
     .call(yAxis);
 
@@ -167,12 +173,6 @@ svg.selectAll("g.x.axis")
 
 if(linebreaks)
 svg.selectAll('#xaxs g text').each(insertLinebreaks);
-
-// do first append once
-if(!firstappend){
-  init(dataset); 
-  firstappend = true;
-}
 
 getProperties(props, dataset, 'property')
 
@@ -279,6 +279,8 @@ lines = svg.selectAll('.property')
 lE = lines.enter()
       .append('g')
       .attr('class', 'property');
+
+xAxis.ticks(d3.time.hours, 1);
 
 var el = document.getElementById('spinner'); 
     el.parentNode.removeChild(el);
