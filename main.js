@@ -26,7 +26,7 @@ try {
 
 }
 
-
+//console.log(tnums);
 d3graph.update(tnums);	
 
 }

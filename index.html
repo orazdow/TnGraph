@@ -1,117 +1,139 @@
 <html>
 <style>
+/*turn on/off in d3graph.js*/
+.line{
+ fill: none;
+ stroke-width: 0.65px;
+ shape-rendering: auto;
+}
+.line.temperature{
+  stroke : red;
+}
+.line.humidity{
+  stroke : blue;
+}
+.area{
+pointer-events: none;	
+opacity: 0.1;
+fill : gray;
+}
+/*turn on/off in d3graph.js*/
+/*.area.temperature{
+  fill : red;
+}
+.area.humidity{
+  fill : blue;
+}*/
+/*turn on/off in d3graph.js*/
+.ygrid{
+  stroke: gray;
+  stroke-dasharray: 2 4;
+}
+circle{
+}
 .axis path,
 .axis line {
 fill: none;
 stroke: #000;
 shape-rendering: crispEdges;
 }
-.tarea, .harea{
-pointer-events: none;	
-}
 body {
   font: 11px sans-serif;
 }
-#svg{
+#disp{
+	width:800px;
+  height: 250px;
+	float: left;
+}
+#buttons{
+  clear: both;
+}
+.tooltip{
+  font: 14px sans-serif;
+  font-weight: 500;
+  position: absolute;
+  visibility: hidden;
+  /*border: 1px solid black;*/
+  display: table;
+  border-radius: 15px;
+  padding: 10px;
+}
 
-} 
-#bkgd{
-fill: #4FF0CF;
-} 
 #readouts{
-display: inline-block;
+clear: both;
+width: 800px;
+padding: 40px;
 }
-#treadout{
-width:200px;
-height:70px;
+#lastread{
+width:300px;
+height:78px;
 margin: 5px;
 padding: 10px;
-background-color: #FFEBA6;
-border: 1px solid black;
-border-radius: 5px;
+/*border: 1px solid black;
+border-radius: 5px;*/
 font: 15px sans-serif;
-}   
-#hreadout{
-width:200px;
-height:70px;
+float: left;
+margin-left: 50px; 
+font: 14px sans-serif;
+}
+#lastread > div{
+padding: 10px;
+float: left;
+}
+#lastread > p{
+font: 15px sans-serif; 
+margin:0px;
+margin-left: 9px;
+}
+#literalsbox {
+height:78px;
 margin: 5px;
 padding: 10px;
-background-color: #FFE2A6;
-border: 1px solid black;
-border-radius: 5px;
-font: 15px sans-serif;
+padding-left: 0px;
+width: 300px;
+float: left;
 }
-#treport{
-margin:20px;
+#literalsbox > p{
+margin-top: 0px;
 font: 15px sans-serif;
-display: inline-block;
-}
-#hreport{
-font: 15px sans-serif;
-display: inline-block;
-}
-#title{
-clear: both;	
 }
 #literals{
 width: 300px;
-height: 40px;	
-line-height: 20px;	
+height: 40px; 
+line-height: 20px;  
 border: 1px solid black;
 overflow-y: scroll;
+float: left;
 }
-#lastread{
-width:400px;
-height:70px;
-margin: 5px;
-padding: 10px;
-/*background-color: #FFEBA6;
-*/border: 1px solid black;
-border-radius: 5px;
-font: 15px sans-serif;
-display: inline-block;
-}
-#disp{
-	width:800px;
-	float: left;
-}
-
-#spinner {
- position: absolute;	
-  margin: 100px auto 0;
+#spinner{
+ position: absolute;  
   width: 70px;
   text-align: center;
-  left: 390; /* << might need adjusting*/
+  left: 90; /* << might need adjusting*/
   top: 0;
 }
-
-#spinner > div {
+#spinner > div{
   width: 12px;
   height: 12px;
   background-color: red;
-
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
-
-#spinner .bounce1 {
+#spinner .bounce1{
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
-
-#spinner .bounce2 {
+#spinner .bounce2{
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
-
-@-webkit-keyframes sk-bouncedelay {
+@-webkit-keyframes sk-bouncedelay{
   0%, 80%, 100% { -webkit-transform: scale(0) }
   40% { -webkit-transform: scale(1.0) }
 }
-
-@keyframes sk-bouncedelay {
+@keyframes sk-bouncedelay{
   0%, 80%, 100% { 
     -webkit-transform: scale(0);
     transform: scale(0);
@@ -120,32 +142,68 @@ display: inline-block;
     transform: scale(1.0);
   }
 }
+
 </style>
+
 <body>
-<svg id="disp">
+
+<div id="svgbox">
+
+<svg id="disp"></svg>
+
 <div id="spinner">
 &nbsp&nbspLoading Data
 <div class="bounce1"></div>
 <div class="bounce2"></div>
 <div class="bounce3"></div>
-</div>	
-</svg>
+</div>
+
+</div>
+
 <div id="readouts">
-<div id="treadout"></div>
-<div id="hreadout"></div>
-<div id="lastread">
-<div id="title">last sensor report</div>
-<div id="treport"></div>
-<div id="hreport"></div>	
-</div>
-</div>
-<div>Sensor Truenumbers
+
+<div id=literalsbox>
+<p>sensor truenumbers</p>
 <div id="literals"></div>
 </div>
+
+<div id="lastread">
+<p>last sensor report</p>
+<div class="temperature"></div>
+<div class="humidity"></div> 
+</div>
+
+</div>
+
+</div>
+<script>
+// changes css absolute position relative to svg's position in the viewport
+var container = document.getElementById('disp');
+var spinner = document.getElementById('spinner');
+
+// this needs to be set 
+var leftoffset = 400, topoffset = 125;
+
+var midx = getOffset(container).left + leftoffset - spinner.offsetWidth/2;
+var midy = getOffset(container).top + topoffset - spinner.offsetHeight;
+
+spinner.style.left = midx;
+spinner.style.top = midy;
+  
+function getOffset(el) {
+  el = el.getBoundingClientRect();
+  return {
+    left: el.left + window.scrollX,
+    top: el.top + window.scrollY
+  }
+}
+</script>
+
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="Zlib.js"></script>
 <script src="d3graph.js"></script>
 <script src="main.js"></script>
 <script src="ajax.js"></script>
 </body>
+
 </html>
