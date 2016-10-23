@@ -181,20 +181,19 @@ float: left;
 var container = document.getElementById('disp');
 var spinner = document.getElementById('spinner');
 
-// this needs to be set 
-var leftoffset = 400, topoffset = 125;
-
-var midx = getOffset(container).left + leftoffset - spinner.offsetWidth/2;
-var midy = getOffset(container).top + topoffset - spinner.offsetHeight;
+var midx = getOffset(container).left + getOffset(container).width/2 - spinner.offsetWidth/2;
+var midy = getOffset(container).top + getOffset(container).height/2 - spinner.offsetHeight;
 
 spinner.style.left = midx;
 spinner.style.top = midy;
   
 function getOffset(el) {
-  el = el.getBoundingClientRect();
+  el = el.getBoundingClientRect(); 
   return {
     left: el.left + window.scrollX,
-    top: el.top + window.scrollY
+    top: el.top + window.scrollY,
+    width: el.width,
+    height: el.height
   }
 }
 </script>
