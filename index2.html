@@ -110,10 +110,8 @@ float: left;
 }
 #spinner{
  position: absolute;  
-  width: 70px;
-  text-align: center;
-  left: 90; /* << might need adjusting*/
-  top: 0;
+ width: 70px;
+ text-align: center;
 }
 #spinner > div{
   width: 12px;
@@ -155,7 +153,7 @@ float: left;
 <svg id="disp"></svg>
 
 <div id="spinner">
-&nbsp&nbspLoading Data
+Loading Data
 <div class="bounce1"></div>
 <div class="bounce2"></div>
 <div class="bounce3"></div>
@@ -186,9 +184,9 @@ float: left;
 // changes css absolute position relative to svg's position in the viewport
 var container = document.getElementById('disp');
 var spinner = document.getElementById('spinner');
-
+//graph bottom margin is +20px 
 var midx = getOffset(container).left + getOffset(container).width/2 - spinner.offsetWidth/2;
-var midy = getOffset(container).top + getOffset(container).height/2 - spinner.offsetHeight;
+var midy = getOffset(container).top + (getOffset(container).height-20)/2 - spinner.offsetHeight/2;
 
 spinner.style.left = midx;
 spinner.style.top = midy;
