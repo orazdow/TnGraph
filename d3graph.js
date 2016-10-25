@@ -18,6 +18,10 @@ var aa = 14;
 var bb = 29;
 var linebreaks = true;
 
+// y tick marks
+var ytickouter = 6;
+var ytickinner = 0;
+
 //property colors if no css specified
 var colors = {
                 'temperature' : 'red',
@@ -90,8 +94,8 @@ var timeformat = d3.time.format('%I:%M:%S %p')
       .ticks(4) //make var
       .tickPadding(8)
       // .tickSize(0);
-     .innerTickSize([0])
-     .outerTickSize([6])
+     .innerTickSize([ytickinner])
+     .outerTickSize([ytickouter])
     ;
 
   svg.append("g")
