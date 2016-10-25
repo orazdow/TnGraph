@@ -9,7 +9,7 @@ var drawLines = true;
 var drawArea = true;
 
 var ylines = true;
-// if no css
+//if no css
 var ylinestyle = ["stroke-dasharray", "2,4"];
 var ylinecolor = "gray";
 
@@ -18,7 +18,7 @@ var aa = 14;
 var bb = 29;
 var linebreaks = true;
 
-// y tick marks
+//y tick marks
 var ytickouter = 6;
 var ytickinner = 0;
 
