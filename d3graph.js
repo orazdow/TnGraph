@@ -402,10 +402,10 @@ var t = 24;
 if(hours <= 72){
 t = 12;
 }
-if(hours <= 24){
+if(hours <= 36){
 t = 6;
 }
-if(hours <= 12){
+if(hours <= 18){
 t = 3;
 }
 if(hours <= 6){
