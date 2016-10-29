@@ -151,21 +151,16 @@ var lastnums = [];
 
 x.domain(d3.extent(dataset, function (d) { return d.date; }));
 
-//////////
-
-// var ext = d3.extent(dataset, function (d) { return d.date; });
-// console.log( (ext[1].getTime() - ext[0].getTime())/(1000*60*60) )
-
-///////////////
-
 // do first append once
 if(!firstappend){
   init(dataset); 
   firstappend = true;
 }
 
-svg.selectAll("g.y.axis")
-    .call(yAxis);
+// svg.selectAll("g.y.axis")
+//     .call(yAxis);
+
+changeXscale(xAxis, dataset);
 
 svg.selectAll("g.x.axis")
   .attr('id', 'xaxs')
@@ -247,7 +242,7 @@ function mousemove() {
 
 
   for (var a = 0; a < props.length; a++) {
-   	 
+     
       var set = dataset.filter(function(d){ return d.property == props[a] });
       var x0 = x.invert(m), 
       i = bisectDate(set, x0, 1),
@@ -267,7 +262,7 @@ function mousemove() {
     d3.select('.tooltip.'+props[a]).html(timeformat(d.date) + '<br>' + '<a href="' + d.link +
      '" ' +'target="_blank"' +'>' + d.property + ': ' + d.value.string + '</a>');
 
-  }	
+  } 
 
 } 
 
@@ -284,7 +279,7 @@ lE = lines.enter()
       .append('g')
       .attr('class', 'property');
 
-xAxis.ticks(d3.time.hours, 1);
+changeXscale(xAxis, dataset);
 
 var el = document.getElementById('spinner'); 
     el.parentNode.removeChild(el);
@@ -397,6 +392,34 @@ function checkRules(seltext, cssprop){
    }
  } 
  return rtn;
+}
+
+function changeXscale(xaxis, dataset){
+var ext = d3.extent(dataset, function (d) { return d.date; });
+var hours = (ext[1].getTime() - ext[0].getTime())/(3600000);
+var a = d3.time.hours;
+var t = 24;
+if(hours <= 72){
+t = 12;
+}
+if(hours <= 24){
+t = 6;
+}
+if(hours <= 12){
+t = 3;
+}
+if(hours <= 6){
+t = 1;
+}
+if(hours <= 3){
+a = d3.time.minutes;    
+t = 30;
+}
+if(hours <= 1){
+a = d3.time.minutes;
+t = 10;
+}
+xaxis.ticks(a, t);
 }
 
 var insertLinebreaks = function (d) {

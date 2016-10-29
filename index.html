@@ -13,9 +13,10 @@
   stroke : blue;
 }
 .area{
-pointer-events: none;	
-opacity: 0.1;
+pointer-events: none; 
+opacity: 0.03; 
 fill : gray;
+
 }
 /*turn on/off in d3graph.js*/
 /*.area.temperature{
@@ -27,7 +28,8 @@ fill : gray;
 /*turn on/off in d3graph.js*/
 .ygrid{
   stroke: gray;
-  stroke-dasharray: 2 4;
+  stroke-dasharray: 2 4;     
+  opacity: 0.3;
 }
 circle{
 }
@@ -41,12 +43,9 @@ body {
   font: 11px sans-serif;
 }
 #disp{
-	width:800px;
+  width:880px;
   height: 250px;
-	float: left;
-}
-#buttons{
-  clear: both;
+  float: left;
 }
 .tooltip{
   font: 14px sans-serif;
@@ -63,39 +62,49 @@ body {
 clear: both;
 width: 800px;
 padding: 40px;
+padding-top: 5px; 
 }
 #lastread{
 width:300px;
 height:78px;
 margin: 5px;
 padding: 10px;
-/*border: 1px solid black;
-border-radius: 5px;*/
 font: 15px sans-serif;
 float: left;
-margin-left: 50px; 
+margin-left: 80px; 
 font: 14px sans-serif;
 }
 #lastread > div{
 padding: 10px;
+padding-top: 0px;
 float: left;
-}
-#lastread > p{
-font: 15px sans-serif; 
-margin:0px;
-margin-left: 9px;
 }
 #literalsbox {
 height:78px;
 margin: 5px;
 padding: 10px;
 padding-left: 0px;
+/*padding-top: 6px; */
 width: 300px;
 float: left;
 }
-#literalsbox > p{
-margin-top: 0px;
-font: 15px sans-serif;
+#literalstitle{
+margin: 0px;  
+margin-left: 100px;
+font: 15px sans-serif; 
+display: inline-block;
+}
+#lastreadtitle{
+margin: 0px;    
+margin-left: 260px;
+font: 15px sans-serif; 
+display: inline-block;
+}
+#rborder{
+border-style: solid;
+border-width: 1px 0px 1px 0px;
+padding: 7px;
+border-color: #808080;
 }
 #literals{
 width: 300px;
@@ -106,9 +115,9 @@ overflow-y: scroll;
 float: left;
 }
 #spinner{
-position: absolute;  
-width: 70px;
-text-align: center;
+ position: absolute;  
+ width: 70px;
+ text-align: center;
 }
 #spinner > div{
   width: 12px;
@@ -159,14 +168,19 @@ Loading Data
 </div>
 
 <div id="readouts">
-
+<!-- <hr> -->
+<div id="rborder">
+<div id="literalstitle">sensor truenumbers</div>
+<div id="lastreadtitle">last sensor report</div>
+</div>
+<!-- <hr> -->
 <div id=literalsbox>
-<p>sensor truenumbers</p>
+<!-- <p>sensor truenumbers</p> -->
 <div id="literals"></div>
 </div>
 
 <div id="lastread">
-<p>last sensor report</p>
+<!-- <p>last sensor report</p> -->
 <div class="temperature"></div>
 <div class="humidity"></div> 
 </div>
@@ -179,8 +193,8 @@ Loading Data
 var container = document.getElementById('disp');
 var spinner = document.getElementById('spinner');
 //graph bottom margin is +20px 
-var midx = getOffset(container).left + getOffset(container).width/2 - spinner.offsetWidth/2; 
-var midy = getOffset(container).top + (getOffset(container).height-20)/2 - spinner.offsetHeight/2; 
+var midx = getOffset(container).left + getOffset(container).width/2 - spinner.offsetWidth/2;
+var midy = getOffset(container).top + (getOffset(container).height-20)/2 - spinner.offsetHeight/2;
 
 spinner.style.left = midx;
 spinner.style.top = midy;
