@@ -16,6 +16,8 @@ var createCORSRequest = function(method, url) {
   return xhr;
 }
 
+//mainCallback(testdata);
+
 mainAjax();
 getLiterals();
 window.setInterval(function(){if(runloop){ mainAjax(); }}, 10000);
