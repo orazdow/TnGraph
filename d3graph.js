@@ -1,8 +1,8 @@
 var d3graph = (function () {
 
 //if no css
-var w = 800;
-var h = 250;
+// var w = 800;
+// var h = 250;
 
 var drawLines = true;
 
